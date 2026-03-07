@@ -2,20 +2,22 @@
 
 {% block content %}
 
-<div class="container mt-4">
+    <div class="container mt-4">
 
-<h2>Delete Course</h2>
+        <h2>Delete Course</h2>
 
-<p>Are you sure you want to delete {{ course.title }}?</p>
+        <p>Are you sure you want to delete {{ course.title }}?</p>
 
-<form method="post">
+        <form method="post">
 
-    {% csrf_token %}
+            {% csrf_token %}
 
-    <button class="btn btn-danger">Delete</button>
+            <button class="btn btn-danger">Delete</button>
+            <a href="{% url 'course_list' %}" class="btn btn-secondary">
+                Cancel
+            </a>
+        </form>
 
-</form>
-
-</div>
+    </div>
 
 {% endblock %}

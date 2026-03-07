@@ -14,13 +14,33 @@
 
 <body>
 
-<nav class="navbar navbar-dark bg-blue">
+<nav class="navbar navbar-dark bg-blue navbar-expand-lg">
 
 <div class="container">
 
-<a class="navbar-brand" href="{% url 'course_list' %}">
+<a class="navbar-brand" href="{% url 'home' %}">
 Study Organizer
 </a>
+
+<div class="navbar-nav">
+
+<a class="nav-link text-white" href="{% url 'home' %}">
+Home
+</a>
+
+<a class="nav-link text-white" href="{% url 'course_list' %}">
+Courses
+</a>
+
+<a class="nav-link text-white" href="#">
+Schedule
+</a>
+
+<a class="nav-link text-white" href="#">
+Tasks
+</a>
+
+</div>
 
 </div>
 

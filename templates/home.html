@@ -1,0 +1,17 @@
+{% extends "base.html" %}
+
+{% block content %}
+
+<h1>Study Organizer</h1>
+
+<p>Welcome to your personal study organizer.</p>
+
+<div class="mt-4">
+
+<a href="{% url 'course_list' %}" class="btn btn-primary">
+View Courses
+</a>
+
+</div>
+
+{% endblock %}

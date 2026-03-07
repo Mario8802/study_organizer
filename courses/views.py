@@ -3,6 +3,10 @@ from .forms import CourseForm
 from .models import Course
 
 
+def home(request):
+    return render(request, "home.html")
+
+
 def course_list(request):
     courses = Course.objects.all()
 
