@@ -1,0 +1,55 @@
+/* Base */
+body {
+    background-color: #f3f6f8;
+    color: #1f2937;
+    font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
+}
+
+/* Navbar */
+.navbar {
+    background-color: #0a66c2;
+}
+
+.navbar a {
+    color: white;
+    font-weight: 500;
+}
+
+/* Headings */
+h1, h2, h3 {
+    color: #0a66c2;
+}
+
+/* Links */
+a {
+    color: #0a66c2;
+    text-decoration: none;
+}
+
+a:hover {
+    color: #004182;
+}
+
+/* Cards */
+.card {
+    background-color: white;
+    border-radius: 10px;
+    border: none;
+    transition: transform 0.2s ease, box-shadow 0.2s ease;
+    box-shadow: 0 2px 8px rgba(0,0,0,0.05);
+}
+
+.card:hover {
+    transform: translateY(-4px);
+    box-shadow: 0 6px 16px rgba(0,0,0,0.08);
+}
+
+/* Buttons */
+.btn-primary {
+    background-color: #0a66c2;
+    border: none;
+}
+
+.btn-primary:hover {
+    background-color: #004182;
+}

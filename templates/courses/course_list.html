@@ -1,0 +1,37 @@
+{% extends "base.html" %}
+
+{% block content %}
+
+    <div class="container mt-4">
+
+        <h2 class="mb-4">Courses</h2>
+
+        <div class="row">
+
+            {% for course in courses %}
+
+                <div class="col-md-4">
+                    <div class="card mb-4">
+                        <div class="card-body">
+
+                            <h5 class="card-title">
+                                <a href="#">{{ course.title }}</a>
+                            </h5>
+
+                            <p class="card-text">
+                                {{ course.description|truncatechars:120 }}
+                            </p>
+
+                        </div>
+                    </div>
+                </div>
+
+            {% empty %}
+
+                <p>No courses yet.</p>
+
+            {% endfor %}
+
+        </div>
+    </div>
+{% endblock %}
