@@ -1,0 +1,68 @@
+{% extends "base.html" %}
+
+{% block content %}
+
+<div class="container mt-5">
+
+    <div class="row justify-content-center">
+
+        <div class="col-md-8">
+
+            <div class="card course-detail-card">
+
+                <div class="card-body">
+
+                    <h2 class="mb-4">{{ course.title }}</h2>
+
+                    <div class="course-meta">
+
+                        <p>
+                            <strong>Course Code:</strong>
+                            {{ course.code }}
+                        </p>
+
+                        <p>
+                            <strong>Professor:</strong>
+                            {{ course.professor }}
+                        </p>
+
+                        <p>
+                            <strong>Start Date:</strong>
+                            {{ course.start_date }}
+                        </p>
+
+                    </div>
+
+                    <div class="course-description mt-4">
+
+                        <p>{{ course.description }}</p>
+
+                    </div>
+
+                    <div class="course-actions mt-4">
+
+                        <a href="{% url 'course_edit' course.id %}" class="btn btn-primary">
+                            Edit
+                        </a>
+
+                        <a href="{% url 'course_delete' course.id %}" class="btn btn-danger">
+                            Delete
+                        </a>
+
+                        <a href="{% url 'course_list' %}" class="btn btn-secondary">
+                            Back
+                        </a>
+
+                    </div>
+
+                </div>
+
+            </div>
+
+        </div>
+
+    </div>
+
+</div>
+
+{% endblock %}

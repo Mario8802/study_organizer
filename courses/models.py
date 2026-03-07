@@ -14,13 +14,18 @@ class Course(models.Model):
     )
 
     description = models.TextField(
-        blank=True
+        blank=True,
+        verbose_name="Description"
     )
 
-    start_date = models.DateField()
+    start_date = models.DateField(
+        verbose_name="Start Date"
+    )
 
     professor = models.CharField(
-        max_length=100
+        max_length=100,
+        verbose_name="Professor"
+
     )
 
     def __str__(self):
