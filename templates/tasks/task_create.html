@@ -5,27 +5,25 @@
 <div class="container mt-4">
     <h2>Create Task</h2>
 
-    <form method="post">
+    <form method="post" novalidate>
         {% csrf_token %}
 
         <div class="mb-3">
             <label class="form-label">Title</label>
             {{ form.title }}
+            {{ form.title.errors }}
         </div>
 
         <div class="mb-3">
             <label class="form-label">Deadline</label>
             {{ form.deadline }}
+            {{ form.deadline.errors }}
         </div>
 
         <div class="mb-3">
             <label class="form-label">Description</label>
             {{ form.description }}
-        </div>
-
-        <div class="mb-3 form-check">
-            {{ form.completed }}
-            <label class="form-check-label">Completed</label>
+            {{ form.description.errors }}
         </div>
 
         <div class="mb-3">

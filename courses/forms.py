@@ -15,3 +15,9 @@ class CourseForm(forms.ModelForm):
             "start_date": forms.DateInput(attrs={"class": "form-control", "type": "date"}),
             "professor": forms.TextInput(attrs={"class": "form-control"}),
         }
+
+    def __init__(self, *args, **kwargs):
+        super().__init__(*args, **kwargs)
+
+        self.fields["code"].disabled = True
+

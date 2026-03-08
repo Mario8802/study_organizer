@@ -3,7 +3,7 @@ from django.views.generic import ListView, CreateView, UpdateView, DeleteView
 from django.urls import reverse_lazy
 
 from .models import Task
-from .forms import TaskForm
+from .forms import TaskForm, TaskEditForm
 
 
 class TaskListView(ListView):
@@ -29,7 +29,7 @@ class TaskCreateView(CreateView):
 
 class TaskUpdateView(UpdateView):
     model = Task
-    form_class = TaskForm
+    form_class = TaskEditForm
     template_name = "tasks/task_edit.html"
     success_url = reverse_lazy("task_list")
 
