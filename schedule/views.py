@@ -12,7 +12,7 @@ class LectureListView(ListView):
 
 class LectureCreateView(CreateView):
     model = Lecture
-    fields = "__all__"
+    form_class = LectureForm
     template_name = "schedule/lecture_create.html"
     success_url = reverse_lazy("lecture_list")
 
