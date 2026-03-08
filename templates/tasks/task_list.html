@@ -1,0 +1,87 @@
+{% extends "base.html" %}
+
+{% block content %}
+
+<div class="container mt-4">
+
+```
+<h2 class="mb-4">Tasks</h2>
+
+<a href="{% url 'task_create' %}" class="btn btn-primary mb-3">
+    Add Task
+</a>
+
+<div class="row">
+
+    {% for task in tasks %}
+
+    <div class="col-md-4">
+
+        <div class="card mb-4 {% if task.completed %}border-success bg-light{% endif %}">
+
+            <div class="card-body">
+
+                <h5 class="{% if task.completed %}text-decoration-line-through text-muted{% endif %}">
+                    {{ task.title }}
+                </h5>
+
+                <p>
+                    <strong>Deadline:</strong>
+                    {{ task.deadline }}
+                </p>
+
+                <p>{{ task.description|truncatechars:80 }}</p>
+
+                <p>
+                    <strong>Courses:</strong>
+                    {% for course in task.courses.all %}
+                        {{ course.title }}{% if not forloop.last %}, {% endif %}
+                    {% endfor %}
+                </p>
+
+                {% if task.completed %}
+                    <span class="badge bg-success">Done</span>
+                {% else %}
+                    <span class="badge bg-warning text-dark">Pending</span>
+                {% endif %}
+
+                <div class="mt-2">
+
+                    <a href="{% url 'task_toggle' task.id %}" class="btn btn-sm btn-success">
+
+                        {% if task.completed %}
+                            Mark Pending
+                        {% else %}
+                            Mark Done
+                        {% endif %}
+
+                    </a>
+
+                    <a href="{% url 'task_edit' task.id %}" class="btn btn-sm btn-outline-primary">
+                        Edit
+                    </a>
+
+                    <a href="{% url 'task_delete' task.id %}" class="btn btn-sm btn-outline-danger">
+                        Delete
+                    </a>
+
+                </div>
+
+            </div>
+
+        </div>
+
+    </div>
+
+    {% empty %}
+
+    <p>No tasks yet.</p>
+
+    {% endfor %}
+
+</div>
+```
+
+</div>
+
+{% endblock %}

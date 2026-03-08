@@ -12,6 +12,15 @@ class LectureListView(ListView):
 
 class LectureCreateView(CreateView):
     model = Lecture
-    form_class = LectureForm
+    fields = "__all__"
     template_name = "schedule/lecture_create.html"
     success_url = reverse_lazy("lecture_list")
+
+    def get_initial(self):
+        initial = super().get_initial()
+        course_id = self.request.GET.get("course")
+
+        if course_id:
+            initial["course"] = course_id
+
+        return initial

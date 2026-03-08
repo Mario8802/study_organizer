@@ -3,111 +3,193 @@
 {% block content %}
 
 <div class="container mt-5">
-
     <div class="row justify-content-center">
-
         <div class="col-md-8">
 
-            <div class="card course-detail-card">
+```
+        <div class="card course-detail-card">
+            <div class="card-body">
 
-                <div class="card-body">
+                <h2 class="mb-4">{{ course.title }}</h2>
 
-                    <h2 class="mb-4">{{ course.title }}</h2>
+                <div class="course-meta">
+                    <p>
+                        <strong>Course Code:</strong>
+                        {{ course.code }}
+                    </p>
 
-                    <div class="course-meta">
+                    <p>
+                        <strong>Professor:</strong>
+                        {{ course.professor }}
+                    </p>
 
-                        <p>
-                            <strong>Course Code:</strong>
-                            {{ course.code }}
-                        </p>
+                    <p>
+                        <strong>Start Date:</strong>
+                        {{ course.start_date }}
+                    </p>
+                </div>
 
-                        <p>
-                            <strong>Professor:</strong>
-                            {{ course.professor }}
-                        </p>
+                <div class="course-description mt-4">
+                    <p>{{ course.description }}</p>
+                </div>
 
-                        <p>
-                            <strong>Start Date:</strong>
-                            {{ course.start_date }}
-                        </p>
+                <!-- TASKS -->
 
-                    </div>
+                <div class="mt-5">
+                    <h4>Tasks</h4>
 
-                    <div class="course-description mt-4">
+                    <a href="{% url 'task_create' %}?course={{ course.id }}"
+                       class="btn btn-sm btn-primary mb-3">
+                        Add Task
+                    </a>
 
-                        <p>{{ course.description }}</p>
+                    {% if course.tasks.all %}
 
-                    </div>
-<div class="mt-5">
+                    <div class="row mt-3">
 
-    <h4>Lectures</h4>
+                        {% for task in course.tasks.all %}
 
-    {% if course.lectures.all %}
+                        <div class="col-md-6">
 
-        <div class="row mt-3">
+                            <div class="card mb-3 {% if task.completed %}border-success bg-light{% endif %}">
 
-            {% for lecture in course.lectures.all %}
+                                <div class="card-body">
 
-                <div class="col-md-6">
+                                    <h5 class="{% if task.completed %}text-decoration-line-through text-muted{% endif %}">
+                                        {{ task.title }}
+                                    </h5>
 
-                    <div class="card mb-3">
+                                    <p>
+                                        <strong>Deadline:</strong>
+                                        {{ task.deadline }}
+                                    </p>
 
-                        <div class="card-body">
+                                    <p>
+                                        {{ task.description|truncatechars:80 }}
+                                    </p>
 
-                            <h5>{{ lecture.title }}</h5>
+                                    {% if task.completed %}
+                                        <span class="badge bg-success">
+                                            Done
+                                        </span>
+                                    {% else %}
+                                        <span class="badge bg-warning text-dark">
+                                            Pending
+                                        </span>
+                                    {% endif %}
 
-                            <p>
-                                <strong>Date:</strong>
-                                {{ lecture.date|date:"d M Y H:i" }}
-                            </p>
+                                    <div class="mt-2">
 
-                            <p>
-                                <strong>Room:</strong>
-                                {{ lecture.room }}
-                            </p>
+                                        <a href="{% url 'task_toggle' task.id %}"
+                                           class="btn btn-sm btn-success">
+
+                                            {% if task.completed %}
+                                                Mark Pending
+                                            {% else %}
+                                                Mark Done
+                                            {% endif %}
+
+                                        </a>
+
+                                    </div>
+
+                                </div>
+
+                            </div>
 
                         </div>
 
+                        {% endfor %}
+
                     </div>
+
+                    {% else %}
+
+                    <p class="text-muted mt-3">
+                        No tasks for this course yet.
+                    </p>
+
+                    {% endif %}
 
                 </div>
 
-            {% endfor %}
 
-        </div>
+                <!-- LECTURES -->
 
-    {% else %}
+                <div class="mt-5">
+                    <h4>Lectures</h4>
 
-        <p class="text-muted mt-3">
-            No lectures scheduled for this course yet.
-        </p>
+                    <a href="{% url 'lecture_create' %}?course={{ course.id }}"
+                       class="btn btn-sm btn-primary mb-3">
+                        Add Lecture
+                    </a>
 
-    {% endif %}
+                    {% if course.lectures.all %}
 
-</div>
-                    <div class="course-actions mt-4">
+                    <div class="row mt-3">
 
-                        <a href="{% url 'course_edit' course.id %}" class="btn btn-primary">
-                            Edit
-                        </a>
+                        {% for lecture in course.lectures.all %}
 
-                        <a href="{% url 'course_delete' course.id %}" class="btn btn-danger">
-                            Delete
-                        </a>
+                        <div class="col-md-6">
+                            <div class="card mb-3">
 
-                        <a href="{% url 'course_list' %}" class="btn btn-secondary">
-                            Back
-                        </a>
+                                <div class="card-body">
+
+                                    <h5>{{ lecture.title }}</h5>
+
+                                    <p>
+                                        <strong>Date:</strong>
+                                        {{ lecture.date|date:"d M Y H:i" }}
+                                    </p>
+
+                                    <p>
+                                        <strong>Room:</strong>
+                                        {{ lecture.room }}
+                                    </p>
+
+                                </div>
+
+                            </div>
+                        </div>
+
+                        {% endfor %}
 
                     </div>
+
+                    {% else %}
+
+                    <p class="text-muted mt-3">
+                        No lectures scheduled for this course yet.
+                    </p>
+
+                    {% endif %}
+                </div>
+
+
+                <!-- ACTIONS -->
+
+                <div class="course-actions mt-4">
+
+                    <a href="{% url 'course_edit' course.id %}" class="btn btn-primary">
+                        Edit
+                    </a>
+
+                    <a href="{% url 'course_delete' course.id %}" class="btn btn-danger">
+                        Delete
+                    </a>
+
+                    <a href="{% url 'course_list' %}" class="btn btn-secondary">
+                        Back
+                    </a>
 
                 </div>
 
             </div>
-
         </div>
 
     </div>
+</div>
+```
 
 </div>
 
