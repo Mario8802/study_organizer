@@ -1,0 +1,39 @@
+{% extends "base.html" %}
+
+{% block content %}
+
+    <h2 class="mb-4">Add Lecture</h2>
+
+    <form method="post">
+
+        {% csrf_token %}
+
+        <div class="mb-3">
+            <label class="form-label">Title</label>
+            {{ form.title }}
+        </div>
+
+        <div class="mb-3">
+            <label class="form-label">Date</label>
+            {{ form.date }}
+        </div>
+
+        <div class="mb-3">
+            <label class="form-label">Room</label>
+            {{ form.room }}
+        </div>
+
+        <div class="mb-3">
+            <label class="form-label">Course</label>
+            {{ form.course }}
+        </div>
+
+        <button class="btn btn-primary">Save</button>
+
+        <a href="{% url 'lecture_list' %}" class="btn btn-secondary">
+            Cancel
+        </a>
+
+    </form>
+
+{% endblock %}

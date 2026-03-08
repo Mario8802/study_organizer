@@ -1,0 +1,51 @@
+{% extends "base.html" %}
+
+{% block content %}
+
+    <h2 class="mb-4">Schedule</h2>
+
+    <a href="{% url 'lecture_create' %}" class="btn btn-primary mb-3">
+        Add Lecture
+    </a>
+
+    <div class="row">
+
+        {% for lecture in lectures %}
+
+            <div class="col-md-4">
+
+                <div class="card mb-4">
+
+                    <div class="card-body">
+
+                        <h5 class="card-title">
+                            {{ lecture.title }}
+                        </h5>
+
+                        <p class="card-text">
+                            Course: {{ lecture.course.title }}
+                        </p>
+
+                        <p class="card-text">
+                            Room: {{ lecture.room }}
+                        </p>
+
+                        <p class="card-text">
+                            {{ lecture.date|date:"d M Y H:i" }}
+                        </p>
+
+                    </div>
+
+                </div>
+
+            </div>
+
+        {% empty %}
+
+            <p>No lectures scheduled.</p>
+
+        {% endfor %}
+
+    </div>
+
+{% endblock %}

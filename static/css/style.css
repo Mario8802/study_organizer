@@ -1,3 +1,12 @@
+html, body {
+    height: 100%;
+}
+
+body {
+    display: flex;
+    flex-direction: column;
+}
+
 body {
     background-color: #f3f6f8;
     color: #1f2937;
@@ -43,13 +52,13 @@ a:hover {
     background-color: white;
     border-radius: 10px;
     border: none;
-    box-shadow: 0 2px 8px rgba(0,0,0,0.05);
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.05);
     transition: transform 0.2s ease, box-shadow 0.2s ease;
 }
 
 .course-card:hover {
     transform: translateY(-4px);
-    box-shadow: 0 10px 20px rgba(0,0,0,0.08);
+    box-shadow: 0 10px 20px rgba(0, 0, 0, 0.08);
 }
 
 /* Buttons */
@@ -81,4 +90,9 @@ a:hover {
     -webkit-line-clamp: 3;
     -webkit-box-orient: vertical;
     overflow: hidden;
+}
+
+footer {
+    font-size: 14px;
+    opacity: 0.7;
 }
