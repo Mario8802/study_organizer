@@ -2,6 +2,7 @@ from django.views.generic import ListView, CreateView
 from django.urls import reverse_lazy
 from .models import Lecture
 from .forms import LectureForm
+from django import forms
 
 
 class LectureListView(ListView):
@@ -24,3 +25,21 @@ class LectureCreateView(CreateView):
             initial["course"] = course_id
 
         return initial
+
+    def get_form(self, form_class=None):
+        form = super().get_form(form_class)
+
+        course_id = self.request.GET.get("course")
+
+        if course_id:
+            form.fields["course"].widget = forms.HiddenInput()
+
+        return form
+
+    def form_valid(self, form):
+        course_id = self.request.GET.get("course")
+
+        if course_id:
+            form.instance.course_id = course_id
+
+        return super().form_valid(form)

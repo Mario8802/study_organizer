@@ -19,5 +19,5 @@ class CourseForm(forms.ModelForm):
     def __init__(self, *args, **kwargs):
         super().__init__(*args, **kwargs)
 
-        self.fields["code"].disabled = True
-
+        if self.instance.pk:
+            self.fields["code"].disabled = True
