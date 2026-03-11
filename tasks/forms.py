@@ -27,6 +27,9 @@ class TaskForm(forms.ModelForm):
             },
             "deadline": {
                 "required": "Please select a deadline!!!"
+            },
+            "courses": {
+                "required": "Please select at least one course!"
             }
         }
 
@@ -69,6 +72,14 @@ class TaskForm(forms.ModelForm):
             raise forms.ValidationError("Deadline cannot be in the past.")
 
         return deadline
+
+    def clean_courses(self):
+        courses = self.cleaned_data.get("courses")
+
+        if not courses:
+            raise forms.ValidationError("Please select at least one course!")
+
+        return courses
 
 
 class TaskEditForm(forms.ModelForm):

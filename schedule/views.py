@@ -26,7 +26,7 @@ class LectureCreateView(CreateView):
 
         return initial
 
-    def get_form(self, form_class=None):
+    def get_form(self, form_class=None):     # TODO
         form = super().get_form(form_class)
 
         course_id = self.request.GET.get("course")

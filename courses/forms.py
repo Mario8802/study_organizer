@@ -21,3 +21,5 @@ class CourseForm(forms.ModelForm):
 
         if self.instance.pk:
             self.fields["code"].disabled = True
+
+
