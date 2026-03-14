@@ -264,11 +264,7 @@ pip install -r requirements.txt
 ## 4. Start PostgreSQL using Docker
 
 ```bash
-docker run -d -p 5432:5432 \
--e POSTGRES_DB=study_organizer_db \
--e POSTGRES_USER=postgres \
--e POSTGRES_PASSWORD=postgres \
---name study_postgres postgres
+docker run -d -p 5432:5432 -e POSTGRES_DB=study_organizer_db -e POSTGRES_USER=postgres -e POSTGRES_PASSWORD=postgres --name study_postgres postgres
 ```
 
 ---
