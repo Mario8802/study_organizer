@@ -12,7 +12,9 @@ class Task(models.Model):
 
     description = models.TextField()
 
-    completed = models.BooleanField(default=False)
+    completed = models.BooleanField(
+        default=False
+    )
 
     courses = models.ManyToManyField(
         Course,
